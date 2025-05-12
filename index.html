@@ -4,14 +4,62 @@
   <meta charset="UTF-8">
   <title>Introduction</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f0f0f0; color: #333; }
-    header { background-color: #2c3e50; color: white; padding: 2rem; text-align: center; }
-    nav { background-color: #34495e; padding: 1rem; text-align: center; }
-    nav a { color: white; margin: 0 1rem; text-decoration: none; font-weight: bold; }
-    main { padding: 2rem; margin: auto; background: white; margin-top: 2rem; max-width: 1400px; }
-    footer { background-color: #2c3e50; color: white; text-align: center; padding: 1rem; margin-top: 2rem; }
-    img { width: 100%; margin-bottom: 1rem; border-radius: 6px; }
-  </style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+    color: #333;
+  }
+  header {
+    background-color: #2c3e50;
+    color: white;
+    padding: 2rem;
+    text-align: center;
+  }
+  nav {
+    background-color: #34495e;
+    padding: 1rem;
+    text-align: center;
+  }
+  nav a {
+    color: white;
+    margin: 0 1rem;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  main {
+    padding: 2rem;
+    margin: auto;
+    background: white;
+    margin-top: 2rem;
+    max-width: 1400px;
+  }
+  footer {
+    background-color: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    margin-top: 2rem;
+  }
+
+  /* ✅ NEW STYLES TO ADD */
+  .layout {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+  }
+
+  .sidebar img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    margin-bottom: 1.5rem;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+</style>
+
 </head>
 <body>
 
@@ -30,19 +78,19 @@
     <a href="resources.html">Resources</a>
   </nav>
 
-  <main>
-    <div style="display: flex; gap: 2rem; align-items: flex-start;">
-      
-      <!-- LEFT SIDEBAR IMAGES -->
-      <div style="flex: 1;">
-        <img src="1.png" alt="Image 1">
-        <img src="2.png" alt="Image 2">
-        <img src="3.png" alt="Image 3">
-      </div>
+ <main>
+  <div class="layout">
+    
+    <!-- LEFT SIDEBAR IMAGES -->
+    <div class="sidebar" style="flex: 1;">
+      <img src="1.png" alt="Image 1">
+      <img src="2.png" alt="Image 2">
+      <img src="3.png" alt="Image 3">
+    </div>
 
-      <!-- MAIN TEXT CONTENT -->
-      <div style="flex: 2;">
-        <h2>Introduction</h2>
+    <!-- MAIN TEXT CONTENT -->
+    <div style="flex: 2;">
+      <h2>Introduction</h2>
 
         <p>The arrival of the Windrush generation in 1948 marked a defining moment in Britain’s post-war history and its evolving relationship with the Commonwealth. Invited to address labour shortages, Caribbean migrants arrived expecting opportunity, equality, and inclusion rights granted to them as British subjects under the British Nationality Act of 1948. Yet their welcome was shaped by a legacy of colonialism and racial hierarchy. Instead, they encountered widespread discrimination in housing, employment, policing, and education.</p>
 
@@ -63,14 +111,15 @@
         <p>This study also includes a digital dissemination project that uses youth-focused platforms, such as TikTok, podcast interviews, and an interactive website, to make these histories accessible to a broader audience. By connecting personal stories, scholarly research, and digital activism, the project seeks to analyse how the past informs the present and ask: what does an anti-racist education system look like—and how can we build it?</p>
       </div>
 
-      <!-- RIGHT SIDEBAR IMAGES -->
-      <div style="flex: 1;">
-        <img src="4.png" alt="Image 4">
-        <img src="5.png" alt="Image 5">
-        <img src="6.png" alt="Image 6">
-      </div>
+     <!-- RIGHT SIDEBAR IMAGES -->
+    <div class="sidebar" style="flex: 1;">
+      <img src="4.png" alt="Image 4">
+      <img src="5.png" alt="Image 5">
+      <img src="6.png" alt="Image 6">
     </div>
-  </main>
+
+  </div>
+</main>
 
   <footer>
     <p>Created by ashyremae | Educational Advocacy Project</p>
