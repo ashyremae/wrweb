@@ -77,11 +77,11 @@
   </nav>
 
   <!-- ✅ VOICE BUTTON ADDED HERE -->
-  <div style="text-align: center; margin: 2rem;">
-    <button onclick="speakIntro()" style="padding: 0.75rem 1.5rem; font-weight: bold; background-color: #2c3e50; color: white; border: none; border-radius: 4px; cursor: pointer;">
-      🔊 Listen to Introduction
-    </button>
-  </div>
+ <div style="text-align: center; margin: 2rem;">
+  <button onclick="toggleSpeech()" id="speechBtn" style="padding: 0.75rem 1.5rem; font-weight: bold; background-color: #2c3e50; color: white; border: none; border-radius: 4px; cursor: pointer;">
+    🔊 Play Introduction
+  </button>
+</div>
 
   <main>
     <div class="layout">
@@ -131,10 +131,20 @@
   </footer>
 
   <!-- ✅ VOICE SCRIPT -->
-  <script>
-    function speakIntro() {
-      const introText = `
-        The arrival of the Windrush generation in 1948 marked a defining moment in Britain’s post-war history and its evolving relationship with the Commonwealth. Invited to address labour shortages, Caribbean migrants arrived expecting opportunity, equality, and inclusion rights granted to them as British subjects under the British Nationality Act of 1948. Yet their welcome was shaped by a legacy of colonialism and racial hierarchy. Instead, they encountered widespread discrimination in housing, employment, policing, and education.
+ <script>
+  let speech = null;
+  let isSpeaking = false;
+
+  function toggleSpeech() {
+    const btn = document.getElementById("speechBtn");
+
+    if (isSpeaking) {
+      speechSynthesis.cancel();
+      isSpeaking = false;
+      btn.textContent = "🔊 Play Introduction";
+    } else {
+      const text = `
+       The arrival of the Windrush generation in 1948 marked a defining moment in Britain’s post-war history and its evolving relationship with the Commonwealth. Invited to address labour shortages, Caribbean migrants arrived expecting opportunity, equality, and inclusion rights granted to them as British subjects under the British Nationality Act of 1948. Yet their welcome was shaped by a legacy of colonialism and racial hierarchy. Instead, they encountered widespread discrimination in housing, employment, policing, and education.
 While often celebrated today as a moment of national transformation, the Windrush story is also one of institutional betrayal. As Guy Hewitt and Kevin M. Isaac argue, the very same individuals once invited to rebuild Britain were later “hunted, uprooted and deported like common criminals” under the hostile environment immigration regime. This contradiction is not limited to immigration policy—it extends to the school system. For the children of Windrush migrants, education in Britain was not a gateway to inclusion but a mechanism of exclusion. Many were placed in “educationally subnormal” (ESN) schools based on biased IQ tests, language barriers, and racialised assumptions of inferiority. Bernard Coard’s landmark 1971 pamphlet, How the West Indian Child Is Made Educationally Subnormal in the British School System, laid bare the structural racism embedded in these decisions.
 This project was inspired by a deeply personal story of my dad. His educational journey, like that of many Black British children, was shaped by systemic inequality. He has dyslexia, a specific learning difference that, during his schooling, was neither recognised nor supported. Instead, he was labelled “slow” and placed under the broad, racialised umbrella of learning disabilities—a classification that overlooked both his ability and individuality. Like so many Black children of his generation, he was disregarded and underestimated by an education system that failed to understand or value him.
 His experience cannot be separated from the broader history of Black migration to Britain, beginning with our family. On his mother’s side, my great-grandmother arrived in the UK with my great-uncle, who was only four years old. She was meant to stay with a cousin, but upon arrival, she discovered that her cousin had been evicted—another victim of the anti-Black racism that shaped post-war housing conditions. She was forced to sleep in Clapham Junction train station with nowhere to go. There, a stranger- a woman whose kindness changed everything—offered her a place to stay. Once she found stability, she sent for my grandfather, and they began building their lives together in Brixton, in a house that remains in our family to this day—now owned by my father.
@@ -144,13 +154,22 @@ The central argument of this essay is that institutional racism, rooted in the p
 Additionally, the essay engages with Simon Peplow’s work on the Windrush narrative in the British media, showing how public memory has elevated and sanitised the Windrush story. Commemorations often frame Windrush migrants as a model minority, obscuring the full extent of the racism they endured, particularly within institutions like schools. When viewed alongside the 2018 Windrush scandal, this selective memory reveals the endurance of systemic erasure and policy neglect.
 This study also includes a digital dissemination project that uses youth-focused platforms, such as TikTok, podcast interviews, and an interactive website, to make these histories accessible to a broader audience. By connecting personal stories, scholarly research, and digital activism, the project seeks to analyse how the past informs the present and ask: what does an anti-racist education system look like—and how can we build it?
 
-      `;
-      const utterance = new SpeechSynthesisUtterance(introText);
-      utterance.lang = "en-GB";
-      utterance.rate = 1;
-      speechSynthesis.speak(utterance);
+      speech = new SpeechSynthesisUtterance(text);
+      speech.lang = "en-GB";
+      speech.rate = 1;
+
+      speech.onend = () => {
+        isSpeaking = false;
+        btn.textContent = "🔊 Play Introduction";
+      };
+
+      speechSynthesis.speak(speech);
+      isSpeaking = true;
+      btn.textContent = "⏸️ Pause";
     }
-  </script>
+  }
+</script>
+
 
 </body>
 </html>
